@@ -1,0 +1,51 @@
+body {
+  font-family: "Pacifico", cursive;
+}
+
+ul li {
+  background-color: white;
+  font-size: 1.5rem;
+  margin: 5px;
+  padding-left: 30px;
+  position: relative;
+  cursor: pointer;
+  list-style: none;
+  /* display: flex;
+  justify-content: space-around; */
+  width: 100%;
+}
+
+ul li span {
+  padding: 0px 10px;
+}
+ul li span:hover {
+  cursor: pointer;
+}
+/* ul li::before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  background-image: url(icons/checkbox.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 25px;
+  width: 25px;
+  transform: translateY(25%);
+} */
+ul li.checked {
+  text-decoration: line-through;
+}
+ul li.checked:hover {
+  cursor: pointer;
+  background-color: #d3d3d31e;
+}
+ul li p.taskText {
+  flex: 1;
+  word-break: break-word;
+}
+ul li.checked::before {
+  content: "";
+  background-image: url(icons/circle.png);
+  height: 25px;
+  width: 25px;
+}

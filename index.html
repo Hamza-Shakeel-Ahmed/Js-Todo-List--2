@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS -Todo List</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    />
+    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+/>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  </head>
+  <body class="bg-black">
+    <div class="container-fluid">
+      <div class="d-flex justify-content-center mt-4 text-light text-center  rounded-4" ><h2 class=" p-2">" The secret of your future is hidden in your daily routine <img class="mb-3" src="icons/rocket2.png" width="40px" height="40px" alt=""> "</h2></div>
+       <div class="  d-flex justify-content-center rounded-4 bg-light m-5 p-5">
+        <div>
+          <div class="d-flex justify-content-center">
+            <h1 class="text-align-center text-black fw-bold ">TO-DO-LIST 
+              <div class="d-flex justify-content-center d-md-inline-block"><img class="mb-3" src="icons/to-do-list.png" alt="" width="50px" height="50px"></div></h1>
+             </div>
+           <div>
+           <div class="d-flex justify-content-center d-md-inline-block"> 
+           <div class="d-flex"> 
+            <div>
+              <input class="py-2  px-md-5 rounded-4 border-1 border-black" id="input" type="text" placeholder ="Enter Your Task Here" />
+            </div>
+              <select class="form-select mx-1 py-2 rounded-4 border-black border-1" id="Day">
+              <option value="Monday">Monday</option>
+              <option value="Tuesday">Tuesday</option>
+              <option value="Wednesday">Wednesday</option>
+              <option value="Thursday">Thursday</option>
+              <option value="Friday">Friday</option>
+              <option value="Saturday">Saturday</option>
+              <option value="Sunday">Sunday</option>
+            </select>
+          </div>
+          </div>
+          <input type="date" class="rounded-4 border-1 py-2 px-2" id="Date" name="Date">
+          <div class="d-flex justify-content-center d-md-inline-block"><button type="button " class="btn btn-primary  mt-1 mb-2 py-2 px-5 rounded-4 border-1" id="addBtn" onclick="addTask()">Add</button></div>
+        </div>
+        <div>
+          
+          <ul class="list-group" id="listContainer">
+
+    
+
+                <!-- <li class="d-flex gap-2">
+                    <div class="flex-grow-1">Task </div>
+                      <button ><i class="bi bi-pencil-square"></i></button>
+                      <button><i class="bi bi-trash3-fill"></i></button>
+                  
+                    
+                </li> -->
+<!--             
+            <li>Task</li>
+            <li>Task</li>
+            <li>Task</li> -->
+          </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
