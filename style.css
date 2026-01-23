@@ -8,29 +8,25 @@ ul li {
   margin: 5px;
   padding-left: 30px;
   position: relative;
-  cursor: pointer;
   list-style: none;
   width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 ul li span {
   padding: 0px 10px;
 }
-ul li span:hover {
-  cursor: pointer;
-}
 
-ul li.checked:hover {
-  cursor: pointer;
-  background-color: #d3d3d31e;
-}
 ul li p.taskText {
   flex: 1;
   word-break: break-word;
 }
 .bi-circle::before,
 .bi-check-circle-fill::before {
+  cursor: pointer;
   position: absolute;
   left: 0;
-  bottom: 7px;
+  top: 10px;
 }

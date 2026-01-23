@@ -3,8 +3,10 @@ const inputBox = document.getElementById("input");
 const list = document.getElementById("listContainer");
 const Day = document.getElementById("Day");
 const Date = document.getElementById("Date");
+const cancelBtn = document.getElementById("cancelBtn");
+const taskText = document.querySelector("taskText");
 let editedIndex = null;
-let checked = null;
+
 const todos = [];
 function addTask() {
   if (input.value === "") {
@@ -28,6 +30,7 @@ function addTask() {
     todos[editedIndex].Date = Date.value;
     editedIndex = null;
     addBtn.innerText = "Add";
+    cancelBtn.classList.add("d-none");
   }
   render();
 }
@@ -39,11 +42,14 @@ function render() {
     const icon = document.createElement("i");
     icon.className = val.completed ? "bi bi-check-circle-fill" : "bi bi-circle";
     newList.className =
-      " newList d-flex justify-content-center align-items-center text-wrap gap-2";
+      " newList d-flex my-2 justify-content-center align-items-center text-wrap gap-2";
+    val.completed
+      ? (newList.className = "text-decoration-line-through")
+      : (newList.className = "text-decoration-none");
     newList.innerHTML = `
-    <div class=" flex-wrap flex-grow-1 ">${val.task}</div>
+    <div class=" flex-wrap flex-grow-1 taskText">${val.task}</div>
     <div>${val.Day}</div>
-    <div class= "mx-4">${val.Date}</div>
+    <div class= "mx-4 text-nowrap">${val.Date}</div>
     <button onclick = "editTask(${index})" ><i class="bi bi-pencil-square"></i></button>
     <button onclick = "deleteTask(${index})"><i class="bi bi-trash3-fill"></i></button>
     </li>
@@ -66,6 +72,8 @@ function deleteTask(index) {
 }
 
 function editTask(index) {
+  cancelBtn.classList.remove("d-none");
+  cancelBtn.classList.add("d-inline");
   input.value = todos[index].task;
   Day.value = todos[index].Day;
   Date.value = todos[index].Date;
@@ -75,5 +83,11 @@ function editTask(index) {
 
 function checkBox(index) {
   todos[index].completed = !todos[index].completed;
+
   render();
+}
+
+function cancelEditing() {
+  cancelBtn.classList.add("d-none");
+  addTask();
 }
