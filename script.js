@@ -47,9 +47,9 @@ function render() {
       ? (newList.className = "text-decoration-line-through")
       : (newList.className = "text-decoration-none");
     newList.innerHTML = `
-    <div class=" flex-wrap flex-grow-1 taskText">${val.task}</div>
+    <div class=" flex-wrap flex-grow-1 taskText"><p class="col-8 mt-1 text-truncate">${val.task}</p></div>
     <div>${val.Day}</div>
-    <div class= "mx-4 text-nowrap">${val.Date}</div>
+    <div class= "mx-4 text-nowrap ">${val.Date}</div>
     <button onclick = "editTask(${index})" ><i class="bi bi-pencil-square"></i></button>
     <button onclick = "deleteTask(${index})"><i class="bi bi-trash3-fill"></i></button>
     </li>
