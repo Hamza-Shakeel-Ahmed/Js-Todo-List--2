@@ -30,3 +30,6 @@ ul li p.taskText {
   left: 0;
   top: 10px;
 }
+.show {
+  display: flex !important;
+}

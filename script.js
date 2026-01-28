@@ -6,10 +6,11 @@ const Date = document.getElementById("Date");
 const cancelBtn = document.getElementById("cancelBtn");
 const filterByTask = document.getElementById("filterByTask");
 const filterByDate = document.getElementById("filterByDate");
+const filterByDay = document.getElementById("filterByDay");
 const li = document.getElementsByTagName("li");
 const p = document.getElementsByTagName("p");
 const dateInput = document.getElementsByClassName("date");
-
+const dayInput = document.getElementsByClassName("day");
 let taskText = null;
 let editedIndex = null;
 
@@ -54,7 +55,7 @@ function render() {
       : (newList.className = "text-decoration-none");
     newList.innerHTML = `
     <div class=" flex-wrap flex-grow-1 "><p class="taskText col-8 mt-1 text-truncate">${val.task}</p></div>
-    <div>${val.Day}</div>
+    <div class="day">${val.Day}</div>
     <div class= "mx-4 text-nowrap date ">${val.Date}</div>
     <button onclick = "editTask(${index})" ><i class="bi bi-pencil-square"></i></button>
     <button onclick = "deleteTask(${index})"><i class="bi bi-trash3-fill"></i></button>
@@ -104,8 +105,8 @@ function FilterByTask() {
   filterByTask.addEventListener("input", (e) => {
     let inputValue = e.target.value;
 
-    for (let i = 0; i < p.length; i++) {
-      if (!p[i].innerHTML.includes(inputValue)) {
+    for (let i = 0; i < li.length; i++) {
+      if (!li[i].innerHTML.includes(inputValue)) {
         li[i].style.display = "none";
       } else {
         li[i].style.display = "flex";
@@ -113,24 +114,43 @@ function FilterByTask() {
     }
   });
 }
+
 function FilterByDate() {
   filterByDate.addEventListener("input", (e) => {
     let inputValue = e.target.value;
-
-    for (let i = 0; i < dateInput.length; i++) {
-      if (
-        !dateInput[i].innerHTML.includes(inputValue) &&
-        !p[i].innerHTML.includes(FilterByTask.value)
-      ) {
+    for (let i = 0; i < li.length; i++) {
+      if (!li[i].innerHTML.includes(inputValue)) {
         li[i].style.display = "none";
-      } else if (
-        p[i].innerHTML.includes(FilterByTask.value) &&
-        !dateInput[i].innerHTML.includes(inputValue)
-      ) {
-        li[i].style.display = "flex";
-      } else if (dateInput[i].innerHTML.includes(inputValue)) {
+      } else {
         li[i].style.display = "flex";
       }
     }
   });
+}
+
+function FilterByDay() {
+  filterByDay.addEventListener("input", (e) => {
+    let inputValue = e.target.value;
+    for (let i = 0; i < li.length; i++) {
+      if (!li[i].innerHTML.includes(inputValue)) {
+        li[i].style.display = "none";
+      } else {
+        li[i].style.display = "flex";
+      }
+    }
+  });
+}
+
+function clearInput() {
+  filterByTask.value = "";
+  filterByDate.value = "";
+  filterByDay.value = "default";
+  let empty = true;
+  for (let i = 0; i < li.length; i++) {
+    if (empty) {
+      li[i].style.display = "flex";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
 }
