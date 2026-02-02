@@ -104,7 +104,6 @@ function cancelEditing() {
 function FilterByTask() {
   filterByTask.addEventListener("input", (e) => {
     let inputValue = e.target.value;
-
     for (let i = 0; i < li.length; i++) {
       if (!li[i].innerHTML.includes(inputValue)) {
         li[i].style.display = "none";
@@ -116,6 +115,9 @@ function FilterByTask() {
 }
 
 function FilterByDate() {
+  if (filterByTask.value !== null) {
+    FilterByTask();
+  }
   filterByDate.addEventListener("input", (e) => {
     let inputValue = e.target.value;
     for (let i = 0; i < li.length; i++) {
@@ -129,6 +131,10 @@ function FilterByDate() {
 }
 
 function FilterByDay() {
+  if (filterByTask.value !== null && filterByDate !== null) {
+    FilterByTask();
+    FilterByDate();
+  }
   filterByDay.addEventListener("input", (e) => {
     let inputValue = e.target.value;
     for (let i = 0; i < li.length; i++) {
