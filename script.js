@@ -9,9 +9,7 @@ const filterByDate = document.getElementById("filterByDate");
 const filterByDay = document.getElementById("filterByDay");
 const li = document.getElementsByTagName("li");
 const p = document.getElementsByTagName("p");
-const dateInput = document.getElementsByClassName("date");
-const dayInput = document.getElementsByClassName("day");
-let taskText = null;
+
 let editedIndex = null;
 
 const todos = [];
@@ -42,9 +40,9 @@ function addTask() {
   render();
 }
 
-function render() {
+function render(todosList = todos) {
   list.innerHTML = "";
-  todos.forEach((val, index) => {
+  todosList.forEach((val, index) => {
     const newList = document.createElement("li");
     const icon = document.createElement("i");
     icon.className = val.completed ? "bi bi-check-circle-fill" : "bi bi-circle";
@@ -101,62 +99,29 @@ function cancelEditing() {
   addTask();
 }
 
-function FilterByTask() {
-  filterByTask.addEventListener("input", (e) => {
-    let inputValue = e.target.value;
-    for (let i = 0; i < li.length; i++) {
-      if (!li[i].innerHTML.includes(inputValue)) {
-        li[i].style.display = "none";
-      } else {
-        li[i].style.display = "flex";
-      }
-    }
+function Filters() {
+  let taskValue = filterByTask.value.toLowerCase();
+  let dateValue = filterByDate.value;
+  let dayValue = filterByDay.value;
+  const todoFiltered = todos.filter((todo) => {
+    console.log(todo);
+    const matchTask =
+      taskValue === "" || todo.task.toLowerCase().includes(taskValue);
+    const matchDate = dateValue === "" || dateValue === todo.Date;
+    console.log("matchDate: ", matchDate);
+    const matchDay = dayValue === "default" || dayValue === todo.Day;
+    console.log("matchDay: ", matchDay);
+    return matchTask && matchDate && matchDay;
   });
+  render(todoFiltered);
 }
-
-function FilterByDate() {
-  if (filterByTask.value !== null) {
-    FilterByTask();
-  }
-  filterByDate.addEventListener("input", (e) => {
-    let inputValue = e.target.value;
-    for (let i = 0; i < li.length; i++) {
-      if (!li[i].innerHTML.includes(inputValue)) {
-        li[i].style.display = "none";
-      } else {
-        li[i].style.display = "flex";
-      }
-    }
-  });
-}
-
-function FilterByDay() {
-  if (filterByTask.value !== null && filterByDate !== null) {
-    FilterByTask();
-    FilterByDate();
-  }
-  filterByDay.addEventListener("input", (e) => {
-    let inputValue = e.target.value;
-    for (let i = 0; i < li.length; i++) {
-      if (!li[i].innerHTML.includes(inputValue)) {
-        li[i].style.display = "none";
-      } else {
-        li[i].style.display = "flex";
-      }
-    }
-  });
-}
+filterByTask.addEventListener("input", Filters);
+filterByDate.addEventListener("change", Filters);
+filterByDay.addEventListener("change", Filters);
 
 function clearInput() {
   filterByTask.value = "";
   filterByDate.value = "";
   filterByDay.value = "default";
-  let empty = true;
-  for (let i = 0; i < li.length; i++) {
-    if (empty) {
-      li[i].style.display = "flex";
-    } else {
-      li[i].style.display = "none";
-    }
-  }
+  render();
 }
